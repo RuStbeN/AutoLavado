@@ -22,6 +22,12 @@ class ServiciosController extends Controller
         return view('servicio', compact('servicio', 'servicios'));
     }
 
+    
+    public function show(Request $request){
+        $servicio = Servicio::find($request->id);
+        return response()->json($servicio);
+    }
+
     public function viewApi(Request $req)
     {
         if ($req->id == 0) {
@@ -110,7 +116,7 @@ class ServiciosController extends Controller
 
         $servicio->save();
 
-        return response()->json(['message' => 'Guardado correctamente amigo', 'servicio' => $servicio]);
+        return 'OK';
     }
 
     public function index()
@@ -142,7 +148,7 @@ class ServiciosController extends Controller
         }
     
         $servicio->delete();
-        return response()->json(['message' => 'Borrado correctamente']);
+        return 'OK';
     }
         
     
